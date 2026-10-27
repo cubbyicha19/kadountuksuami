@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classified Message</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #00ffcc;
+            font-family: 'DIN', 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        #typewriter {
+            font-size: 1.2rem;
+            border-right: 2px solid #00ffcc;
+            white-space: pre-wrap;
+            animation: blink 0.75s step-end infinite;
+            min-height: 100px;
+        }
+        @keyframes blink { 50% { border-color: transparent; } }
+        
+        #pesan-utama {
+            opacity: 0;
+            transition: opacity 2s ease-in;
+            margin-top: 30px;
+            color: #ffffff;
+        }
+        #pesan-utama.muncul {
+            opacity: 1;
+        }
+        .tombol-kejutan {
+            background: transparent;
+            border: 2px solid #00ffcc;
+            color: #00ffcc;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+        .tombol-kejutan:hover {
+            background: #00ffcc;
+            color: #121212;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="typewriter"></div>
+    
+    <div id="pesan-utama">
+        <h2>Selamat Ulang Tahun, Andi Reza! 💙</h2>
+        <p>Semoga semua sistem kehidupanmu berjalan lancar tanpa error tahun ini.</p>
+        <button class="tombol-kejutan" onclick="alert('I love you! (Kamu bisa ganti alert ini dengan foto atau link hadiah)')">Klik Di Sini</button>
+    </div>
+
+    <script>
+        const teks = "> System booting...\n> Accessing secure server...\n> Target verified...\n> Decrypting message...";
+        let i = 0;
+        const kecepatan = 50; // Kecepatan ketikan dalam milidetik
+        
+        function efekKetik() {
+            if (i < teks.length) {
+                document.getElementById("typewriter").innerHTML += teks.charAt(i);
+                i++;
+                setTimeout(efekKetik, kecepatan);
+            } else {
+                // Menghilangkan kursor kedip setelah selesai
+                document.getElementById("typewriter").style.borderRight = "none";
+                // Memunculkan pesan utama setelah jeda 1 detik
+                setTimeout(() => {
+                    document.getElementById("pesan-utama").classList.add("muncul");
+                }, 1000);
+            }
+        }
+
+        window.onload = efekKetik;
+    </script>
+</body>
+</html>
